@@ -9,6 +9,7 @@ class DemoSegment:
     start_time: float
     end_time: float
     source_text: str
+    source_language: str | None = None
 
 
 class DiarizationProvider(Protocol):
@@ -31,4 +32,3 @@ class StorageProvider(Protocol):
     def upload_path(self, job_id: str, filename: str) -> Path: ...
     def work_path(self, job_id: str, filename: str) -> Path: ...
     def output_path(self, job_id: str, filename: str) -> Path: ...
-

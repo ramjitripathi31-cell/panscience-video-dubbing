@@ -26,6 +26,10 @@ class Settings(BaseSettings):
     worker_concurrency: int = 2
     provider_diarization: str = "demo"
     provider_speech_to_text: str = "demo"
+    stt_provider: str | None = None
+    whisper_model_size: str = "tiny"
+    whisper_device: str = "cpu"
+    whisper_compute_type: str = "int8"
     provider_translation: str = "demo"
     provider_text_to_speech: str = "demo"
     provider_storage: str = "local"
@@ -38,6 +42,10 @@ class Settings(BaseSettings):
     @property
     def result_backend(self) -> str:
         return self.celery_result_backend or self.redis_url
+
+    @property
+    def selected_stt_provider(self) -> str:
+        return self.stt_provider or self.provider_speech_to_text
 
 
 @lru_cache

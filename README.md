@@ -18,4 +18,7 @@ python -m pip install -e '.[test]'
 pytest
 ```
 
-No AI providers or media-processing pipeline is implemented yet.
+Default STT is deterministic demo mode (`STT_PROVIDER=demo`). Optional local
+SpeechToText uses faster-whisper (`STT_PROVIDER=faster_whisper`; install the
+`whisper` extra). Diarization, translation, and TTS remain deterministic demo
+providers in the default assignment demo; no paid/cloud AI integrations are included.

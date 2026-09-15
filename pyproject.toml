@@ -25,6 +25,7 @@ test = [
   "pytest>=8.3,<9",
   "pytest-asyncio>=0.24,<1",
 ]
+whisper = ["faster-whisper>=1.1,<2"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/app"]

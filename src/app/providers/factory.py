@@ -8,8 +8,11 @@ def get_diarization_provider():
 
 
 def get_speech_to_text_provider():
-    if settings.provider_speech_to_text != "demo": raise ValueError("Only DEMO speech-to-text provider is implemented")
-    return DemoSpeechToTextProvider()
+    if settings.selected_stt_provider == "demo": return DemoSpeechToTextProvider()
+    if settings.selected_stt_provider == "faster_whisper":
+        from app.providers.faster_whisper import FasterWhisperSpeechToTextProvider
+        return FasterWhisperSpeechToTextProvider()
+    raise ValueError(f"Unsupported STT provider: {settings.selected_stt_provider}")
 
 
 def get_translation_provider():
