@@ -11,6 +11,9 @@ docker compose up --build -d
 curl http://localhost:8000/health
 ```
 
+Uploads are limited to 10 minutes by default (`MAX_DURATION_SECONDS=600`).
+Retries are manual and bounded by `MAX_RETRIES`; no automatic retry framework is enabled.
+
 The API container applies Alembic migrations before starting. Run tests locally with:
 
 ```bash

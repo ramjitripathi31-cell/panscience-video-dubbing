@@ -57,6 +57,8 @@ def _job(db, job_id):
 def retry_job(job_id: uuid.UUID, db: Session = Depends(get_db)):
     job = _job(db, job_id)
     if job.status != JobStatus.FAILED: raise HTTPException(409, "only failed jobs can be retried")
+    if job.attempt_count >= settings.max_retries:
+        raise HTTPException(409, "maximum retry attempts reached")
     job.status, job.current_stage, job.progress, job.error_code, job.error_message = JobStatus.PENDING, None, 0, None, None; db.add(JobEvent(job_id=job.id, event_type="retry")); db.commit()
     from app.workers.tasks import process_job_task
     process_job_task.delay(str(job.id)); return JobCreated(id=job.id, status="QUEUED")
@@ -87,4 +89,3 @@ def subtitles(job_id: uuid.UUID, language: str, db: Session = Depends(get_db)): 
 
 @router.get("/{job_id}/video/{language}")
 def video(job_id: uuid.UUID, language: str, db: Session = Depends(get_db)): return FileResponse(_artifact(db, job_id, "video", language).path, media_type="video/mp4", filename=f"dubbed_{language}.mp4")
-

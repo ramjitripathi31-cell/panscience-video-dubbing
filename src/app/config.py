@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     celery_result_backend: str | None = None
     allowed_extensions: list[str] = [".mp4", ".mov", ".mkv", ".webm", ".avi"]
     max_upload_size_mb: int = 500
-    max_duration_seconds: int = 3600
+    max_duration_seconds: int = 600
     processing_timeout_seconds: int = 3600
     max_retries: int = 2
     worker_concurrency: int = 2
