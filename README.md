@@ -205,7 +205,7 @@ through Swagger.
 
 ``` bash
 curl -X POST http://localhost:8000/api/v1/jobs \
-  -F "file=@sample.mp4" \
+  -F "video=@sample.mp4" \
   -F "target_languages=hi"
 ```
 
