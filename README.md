@@ -510,3 +510,12 @@ boundaries replaceable - keep operational limits configurable - make
 failure/retry/cancellation visible - keep the default evaluator setup
 deterministic - provide a clear path from a single-host demo to
 horizontally scaled CPU/GPU processing
+
+
+## Video Walkthrough
+
+A 17-minute walkthrough covering the architecture, configuration, AI provider
+abstraction, asynchronous processing pipeline, fault handling, scalability,
+Docker setup, REST APIs, automated tests, and an end-to-end live demo.
+
+**[Watch the Video Walkthrough](https://drive.google.com/file/d/1eqSMUQOGvSqFeRkhLbJQVIf_aO5F3jh6/view?usp=sharing)**
